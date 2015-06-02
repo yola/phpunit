@@ -38,9 +38,11 @@ class PHPUnit_Util_PHP_Default extends PHPUnit_Util_PHP
 
         $settings[] = 'error_reporting=' . (E_ALL ^ E_DEPRECATED);
         if (ini_get('safe_mode')) {
-            $settings[] = 'open_basedir=' . ini_get('open_basedir');
             $bin = str_replace("'", '', $bin);
             $settings[] = 'safe_mode=On';
+        }
+        if (ini_get('open_basedir')) {
+            $settings[] = 'open_basedir=' . ini_get('open_basedir');
         }
 
         $process = proc_open(
