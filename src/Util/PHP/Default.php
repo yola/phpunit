@@ -36,6 +36,7 @@ class PHPUnit_Util_PHP_Default extends PHPUnit_Util_PHP
         $runtime = new Runtime;
         $bin = $runtime->getBinary();
 
+        $settings[] = "error_reporting=" . (E_ALL ^ E_DEPRECATED);
         if (ini_get('safe_mode')) {
             $bin = str_replace("'", "", $bin);
             $settings[] = "safe_mode=On";
