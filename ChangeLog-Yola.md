@@ -1,8 +1,10 @@
 # Changes made by Yola
 
-Always tag using `<sem version>-patch.#`.
-[Composer does not respect semantic versioning](
+Always tag using `<version>-patch.#`.
+
+[Composer does not respect all semantic versions](
 https://github.com/composer/composer/issues/3181#issuecomment-105652783).
+
 
 ## 4.6.9-patch.1
 
