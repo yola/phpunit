@@ -13,3 +13,7 @@ https://github.com/composer/composer/issues/3181#issuecomment-105652783).
 ## 4.6.9-patch.2
 
 * Code cleanup
+
+## 4.6.9-patch.3
+
+* Pass all safemode related directives to the subprocess

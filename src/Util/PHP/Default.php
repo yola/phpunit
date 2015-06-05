@@ -37,10 +37,12 @@ class PHPUnit_Util_PHP_Default extends PHPUnit_Util_PHP
         $bin = $runtime->getBinary();
 
         $settings[] = 'error_reporting=' . (E_ALL ^ E_DEPRECATED);
+
         if (ini_get('safe_mode')) {
             $bin = str_replace("'", '', $bin);
-            $settings[] = 'safe_mode=On';
+            $this->enableSafemode($settings);
         }
+
         if (ini_get('open_basedir')) {
             $settings[] = 'open_basedir=' . ini_get('open_basedir');
         }
@@ -74,6 +76,28 @@ class PHPUnit_Util_PHP_Default extends PHPUnit_Util_PHP
         $this->cleanup();
 
         return array('stdout' => $stdout, 'stderr' => $stderr);
+    }
+
+    /**
+     * Adds safe_mode related directives
+     */
+    protected function enableSafemode(&$settings)
+    {
+        $safemode_directives = array(
+            "safe_mode",
+            "safe_mode_allowed_env_vars",
+            "safe_mode_exec_dir",
+            "safe_mode_gid",
+            "safe_mode_include_dir",
+            "safe_mode_protected_env_vars",
+        );
+        foreach ($safemode_directives as $directive) {
+            $val = ini_get($directive);
+            if (empty($val)) {
+                continue;
+            }
+            $settings[] = "$directive=$val";
+        }
     }
 
     /**
