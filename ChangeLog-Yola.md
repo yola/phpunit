@@ -13,3 +13,7 @@ https://github.com/composer/composer/issues/3181#issuecomment-105652783).
 ## 4.6.9-patch.2
 
 * Code cleanup
+
+## 4.7.1-patch.1
+
+* Pass all safemode related directives to the subprocess [#2](https://github.com/yola/phpunit/pull/1)
